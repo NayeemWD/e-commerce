@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "../../../assets/image/HERO-COVER2.png";
+import bg from "../../../assets/image/HERO-COVER3.png";
 import { Link } from "react-router";
 
 const Hero = () => {
