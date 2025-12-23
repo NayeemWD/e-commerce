@@ -9,11 +9,11 @@ const TopHeader = () => {
                 <div className="flex items-center gap-4 sm:gap-8 md:gap-12 ct ">
                     <div className="flex items-center gap-2">
                         <MdOutlinePhoneInTalk />
-                        <p className="text-[12px] ct ">01753923093</p>
+                        <p className="text-[12px] ct ">01643547750</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <BsWhatsapp />
-                        <p className="text-[12px] ">01322840808</p>
+                        <p className="text-[12px] ">01568110423</p>
                     </div>
                 </div>
                 <div className="hidden md:block">

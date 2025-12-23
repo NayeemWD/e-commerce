@@ -38,12 +38,12 @@ const Footer = () => {
         <div className="lg:col-span-2">
           <div className="flex items-center justify-center sm:justify-start gap-3 mb-3">
             <div className="w-10 h-10 rounded-md bg-green-600 flex items-center justify-center text-white font-bold text-lg">
-              G
+              M S
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800">Sakib </h2>
+            <h2 className="text-2xl font-semibold text-gray-800">Nayeem </h2>
           </div>
           <p className="text-sm mb-4">
-            Sakib  is the biggest market of grocery products.
+            Nayeem is the biggest market of grocery products.
             <br />
             Get your daily needs from our store.
           </p>
@@ -118,9 +118,9 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <p className="text-center sm:text-left">
             Copyright © {new Date().getFullYear()}{" "}
-            <span className="text-green-600 font-semibold">Sakib </span> all
+            <span className="text-green-600 font-semibold">Nayeem </span> all
             rights reserved. Powered by{" "}
-            <span className="text-green-600 font-semibold">Sakib </span>.
+            <span className="text-green-600 font-semibold">Nayeem </span>.
           </p>
 
           <div className="flex items-center gap-3 text-2xl text-gray-600">

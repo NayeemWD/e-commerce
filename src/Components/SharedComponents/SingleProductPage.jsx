@@ -14,7 +14,7 @@ const SingleProductPage = () => {
       <div>
         <div className="flex items-center gap-8 my-12 justify-center">
           <img
-            className="w-62 h-20 rounded-md"
+            className="w-96 rounded-md"
             src={findProducts?.image}
             alt=""
           />
