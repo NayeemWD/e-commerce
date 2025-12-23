@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Eggs",
+    "items": 154,
+    "discount": 0,
+    "image": "https://i.ibb.co.com/R49BQw8R/1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Clothes",
+    "items": 320,
+    "discount": 30,
+    "image": "https://i.ibb.co.com/SqDd6YC/3.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Watches",
+    "items": 65,
+    "discount": 0,
+    "image": "https://i.ibb.co.com/w9B76QZ/15.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Dresses",
+    "items": 548,
+    "discount": 15,
+    "image": "https://i.ibb.co.com/Q3nJtgpm/8.png"
+  },
+  {
+    "id": 5,
+    "name": "Glasses",
+    "items": 48,
+    "discount": 10,
+    "image": "https://i.ibb.co.com/TxkjRW26/11.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Cosmatics",
+    "items": 59,
+    "discount": 0,
+    "image": "https://i.ibb.co.com/60jH8GWd/5.jpg"
+  }
+]
