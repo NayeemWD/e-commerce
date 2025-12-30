@@ -4,17 +4,39 @@ import { useParams } from "react-router";
 import { FaStar } from "react-icons/fa";
 import ProductCard from "./ProductCard";
 import SectionHeading from "./SectionHeading";
+import { TbCurrencyTaka } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
+import { useToast } from "./ToastContext";
+import { addToCart } from "../../redux/actions/cartActions.jsx";
 
 const SingleProductPage = () => {
   const { id } = useParams();
   const { products } = useData();
   const findProducts = products.find((p) => p.id == id);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+  const { showToast } = useToast();
+
+  const handleAddToCart = () => {
+    if (!findProducts) return;
+    const exists = cart.find((i) => i.id === findProducts.id);
+    if (exists) {
+      showToast({
+        type: "warning",
+        message: "Item already in cart — update qty from Cart",
+      });
+      return;
+    }
+    dispatch(addToCart(findProducts));
+    showToast({ type: "success", message: "Added to cart" });
+  };
+
   return (
     <div>
       <div>
-        <div className="flex items-center gap-8 my-12 justify-center">
+        <div className="flex flex-col md:flex-row items-center gap-8 m-12 px-8 justify-center">
           <img
-            className="w-96 rounded-md"
+            className="w-full max-w-md md:w-96 rounded-md object-cover"
             src={findProducts?.image}
             alt=""
           />
@@ -34,10 +56,12 @@ const SingleProductPage = () => {
                 <p className="ts">Total Rating : {findProducts?.ratings}</p>
               </div>
             </div>
-            <div className="flex gap-4 text-2xl ">
-              <p>Price : $ {findProducts?.price}</p>
-              <p className="line-through text-gray-400">
-                $ {findProducts?.mrp}
+            <div className="flex flex-col sm:flex-row gap-4 text-lg sm:text-2xl items-start sm:items-center">
+              <p className="flex items-center justify-start text-base sm:text-lg">
+                Price : <TbCurrencyTaka /> {findProducts?.price}
+              </p>
+              <p className="line-through text-gray-400 flex items-center justify-start text-sm sm:text-base">
+                <TbCurrencyTaka /> {findProducts?.mrp}
               </p>
             </div>
             <div>
@@ -65,9 +89,9 @@ const SingleProductPage = () => {
             <div className="flex gap-2 items-center">
               <p className="font-semibold mr-3 my-4">Size : </p>
               {findProducts?.weightOptions.map((w) => (
-                <div>
+                <div key={w}>
                   <p>
-                    <span className="font-normal text-gray-600 btn btn-xs">
+                    <span className="font-normal text-gray-600 btn btn-xs sm:btn-sm px-2 py-1">
                       {w}
                     </span>
                   </p>
@@ -75,29 +99,30 @@ const SingleProductPage = () => {
               ))}
             </div>
             <div className="flex gap-2 my-4">
-              <div className="flex gap-4 border border-gray-200 px-8 py-2 rounded-md">
-                <p>-</p>
-                <p>1</p>
-                <p>+</p>
-              </div>
-              <div>
-                <button className="btn bgp text-gray-100">Add To Cart</button>
+ 
+              <div className="w-full sm:w-auto">
+                <button
+                  onClick={handleAddToCart}
+                  disabled={!findProducts}
+                  className="btn w-full sm:w-auto bgp text-gray-100 disabled:opacity-50">
+                  Add To Cart
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-24">
+      <div className="container mx-auto px-4 sm:px-8 md:px-12 lg:px-24">
         <SectionHeading
           heading={"Top Rted"}
           colorHeading={"Seleing Products"}
           discription={
             "High-quality denim jeans for men with a comfortable"
           }></SectionHeading>
-        <div className="grid grid-cols-5 my-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 my-12">
           {products.slice(0, 5).map((p) => (
-            <ProductCard product={p}></ProductCard>
+            <ProductCard product={p} key={p.id}></ProductCard>
           ))}
         </div>
       </div>

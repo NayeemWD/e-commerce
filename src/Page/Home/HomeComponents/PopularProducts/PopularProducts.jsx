@@ -18,7 +18,7 @@ const PopularProducts = () => {
         <div className='container mx-auto px-4 sm:px-8 md:px-12 lg:px-24 pt-24 '>
             <div className='flex flex-wrap justify-between items-center'>
                 <SectionHeading heading={"Popular"} colorHeading={"Products"} discription={"Shop online for new arrivals and get free shipping!"}></SectionHeading>
-                <div className='flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mt-4 md:mt-0'>
+                <div className='flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mt-4 md:mt-4'>
                     <div>
                         <p onClick={() => handleCategoryId(null)} className={`cursor-pointer ${!categoryId ? 'text-blue-500 font-bold' : ''}`}>All</p>
                     </div>

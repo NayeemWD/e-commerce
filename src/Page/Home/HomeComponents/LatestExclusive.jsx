@@ -1,5 +1,6 @@
 import React from "react";
 import cover from "../../../assets/image/execulisive colloction.png";
+import { Link } from "react-router";
 const LatestExclusive = () => {
   return (
     <div className="py-24">
@@ -15,7 +16,9 @@ const LatestExclusive = () => {
             Summer Collection
           </h3>
           <button className="bgp px-5 py-2 rounded-md text-white">
-            Shop Now
+            <Link to="/shop">
+              <button>Shop Now</button>
+            </Link>
           </button>
         </div>
       </div>

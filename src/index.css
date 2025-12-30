@@ -1,22 +1,27 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .cp {
-    color: #5CAF90;
+  color: #5caf90;
 }
-.ct{
-     color: #4B5966;
+.ct {
+  color: #4b5966;
 }
 .bgp {
-    background-color: #5CAF90;
+  background-color: #5caf90;
 }
 
 .ts {
-    color: #4B5966;
-    font-size: 14px;
-
+  color: #4b5966;
+  font-size: 14px;
 }
