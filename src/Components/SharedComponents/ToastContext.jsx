@@ -26,7 +26,7 @@ export const ToastProvider = ({ children }) => {
       {children}
 
       {/* Toast container */}
-      <div className="fixed top-4 right-4 z-50 flex flex-col items-end gap-3">
+      <div className="fixed top-18 right-1 z-50 flex flex-col items-end gap-3">
         {toasts.map((t) => (
           <div key={t.id} className="transform transition duration-300 ease-out">
             <Alert type={t.type} message={t.message} onClose={() => removeToast(t.id)} autoDismiss={0} />
