@@ -35,6 +35,7 @@ const Cart = () => {
       <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
+
       ) : (
         <>
           <div className="grid grid-cols-1 gap-4">
@@ -53,6 +54,7 @@ const Cart = () => {
                     src={item.image}
                     alt={item.name}
                     className="w-20 h-20 sm:w-24 sm:h-24 object-cover mr-4 rounded lg:w-16 lg:h-18 "
+
                   />
                   <div className="grow">
                     <h2 className="font-bold">{item.name}</h2>
