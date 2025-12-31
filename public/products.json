@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Potato Chips 52g, American Cream.",
+    "name": "Potato Chips American Cream.",
     "categoryId": 1,
     "categoryName": "Women",
     "price": 664.0,
@@ -57,7 +57,7 @@
     "outerMaterial": "Leather & Steel",
     "weightOptions": ["Standard Size"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/SqDd6YC/3.jpg"
+    "image": "https://i.ibb.co.com/w9B76QZ/15.jpg"
   },
   {
     "id": 4,
@@ -97,7 +97,7 @@
     "outerMaterial": "Plastic Frame",
     "weightOptions": ["Standard"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/HL4stMQN/10.jpg"
+    "image": "https://i.ibb.co.com/TxkjRW26/11.jpg"
   },
   {
     "id": 6,
@@ -117,11 +117,11 @@
     "outerMaterial": "Plastic & Glass",
     "weightOptions": ["250g", "500g"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/GvdNdcGF/6.jpg"
+    "image": "https://i.ibb.co.com/60jH8GWd/5.jpg"
   },
   {
     "id": 7,
-    "name": "Organic Brown  (12 pcs)",
+    "name": "Organic Brown ",
     "categoryId": 1,
     "categoryName": "Women",
     "price": 249.0,
@@ -137,7 +137,7 @@
     "outerMaterial": "Egg Shell",
     "weightOptions": ["12 pcs", "24 pcs"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/0yWwWQ00/7.jpg"
+    "image": "https://i.ibb.co.com/Q3nJtgpm/8.png"
   },
   {
     "id": 8,
@@ -157,7 +157,7 @@
     "outerMaterial": "Denim",
     "weightOptions": ["30", "32", "34", "36"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/Q3nJtgpm/8.png"
+    "image": "https://i.ibb.co.com/SqDd6YC/3.jpg"
   },
   {
     "id": 9,
@@ -177,7 +177,7 @@
     "outerMaterial": "Stainless Steel",
     "weightOptions": ["Standard"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/BVCq8xw9/9.jpg"
+    "image": "https://i.ibb.co.com/nsQQKpDr/17.jpg"
   },
   {
     "id": 10,
@@ -197,7 +197,7 @@
     "outerMaterial": "Cotton Blend",
     "weightOptions": ["S", "M", "L", "XL"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/60jH8GWd/5.jpg "
+    "image": "https://i.ibb.co.com/zVh00Z5N/18.jpg"
   },
   {
     "id": 11,
@@ -217,7 +217,7 @@
     "outerMaterial": "Polycarbonate Frame",
     "weightOptions": ["Standard"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/TxkjRW26/11.jpg"
+    "image": "https://i.ibb.co.com/fzVscvQg/12.jpg"
   },
   {
     "id": 12,
@@ -237,7 +237,7 @@
     "outerMaterial": "Plastic & Wax",
     "weightOptions": ["6 pcs set"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/fzVscvQg/12.jpg"
+    "image": "https://i.ibb.co.com/jPh7FR0r/16.jpg"
   },
   {
     "id": 13,
@@ -257,6 +257,6 @@
     "outerMaterial": "Plastic & Wax",
     "weightOptions": ["6 pcs set"],
     "quantity": 1,
-    "image": "https://i.ibb.co.com/fzVscvQg/12.jpg"
+    "image": "https://i.ibb.co.com/GvdNdcGF/6.jpg"
   }
 ]
