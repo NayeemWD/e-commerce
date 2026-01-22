@@ -1,4 +1,4 @@
-# EasyShop E-Commerce Web Applycation
+# EasyShop E-Commerce Web Application
 
 A modern, responsive e-commerce application built with React, Redux, and Tailwind CSS. This project provides a complete shopping experience, from browsing products to adding items to a cart.
 
