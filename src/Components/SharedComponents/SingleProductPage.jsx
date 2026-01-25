@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import useData from "../../Hooks/useData";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { FaStar } from "react-icons/fa";
 import ProductCard from "./ProductCard";
 import SectionHeading from "./SectionHeading";
@@ -8,6 +8,8 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./ToastContext";
 import { addToCart } from "../../redux/actions/cartActions.jsx";
+import { AuthContext } from "../../Context/AuthProvider";
+import Swal from "sweetalert2";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -16,8 +18,24 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const { showToast } = useToast();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
+    if (!user) {
+      Swal.fire({
+        title: 'Please Login',
+        text: 'You need to login to add items to the cart.',
+        icon: 'warning',
+        confirmButtonText: 'Login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+      return;
+    }
+
     if (!findProducts) return;
     const exists = cart.find((i) => i.id === findProducts.id);
     if (exists) {
@@ -99,7 +117,7 @@ const SingleProductPage = () => {
               ))}
             </div>
             <div className="flex gap-2 my-4">
- 
+
               <div className="w-full sm:w-auto">
                 <button
                   onClick={handleAddToCart}

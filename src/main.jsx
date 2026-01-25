@@ -1,5 +1,4 @@
 
-
 import './index.css'
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router";
@@ -17,6 +16,8 @@ import store from './redux/store/store';
 import Cart from './Page/Cart/Cart';
 import Login from './Page/Auth/Login';
 import Registration from './Page/Auth/Registration';
+import AuthProvider from './Context/AuthProvider';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -25,13 +26,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home></Home> },
       { path: "/shop", element: <ShopNow></ShopNow> },
-      { path: "/about", element: <About></About>},
-      { path: "/blog", element: <Blog></Blog>},
-      { path: "/contact", element: <Contact></Contact>},
-      { path: "/shop/:id", element:<SingleProductPage></SingleProductPage>},
-      { path: "/cart", element: <Cart></Cart>},
-      { path: "/login", element: <Login></Login>},
-      { path: "/register", element: <Registration></Registration>},
+      { path: "/about", element: <About></About> },
+      { path: "/blog", element: <Blog></Blog> },
+      { path: "/contact", element: <Contact></Contact> },
+      { path: "/shop/:id", element: <SingleProductPage></SingleProductPage> },
+      { path: "/cart", element: <PrivateRoute><Cart></Cart></PrivateRoute> },
+      { path: "/login", element: <Login></Login> },
+      { path: "/register", element: <Registration></Registration> },
     ],
   },
 
@@ -42,7 +43,9 @@ const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   <Provider store={store}>
     <FilterProvider>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </FilterProvider>
   </Provider>
 );

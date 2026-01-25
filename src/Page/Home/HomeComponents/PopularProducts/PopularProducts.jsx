@@ -1,19 +1,42 @@
 
+import React, { useContext, useState } from 'react';
 import SectionHeading from '../../../../Components/SharedComponents/SectionHeading';
 import useData from '../../../../Hooks/useData';
 
 import ProductCard from '../../../../Components/SharedComponents/ProductCard';
-import { useState } from 'react';
 import { TbCategory } from 'react-icons/tb';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../../../Context/AuthProvider';
+import Swal from 'sweetalert2';
 
 const PopularProducts = () => {
     const { categorys, products } = useData()
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [categoryId, SetCategoryId] = useState(null)
     const handleCategoryId = (id) => {
         SetCategoryId(id)
     }
     const filterProduct = categoryId ? products.filter(p => p.categoryId == categoryId) : products
+
+    const handleProtectedClick = (e, path) => {
+        e.preventDefault();
+        if (user) {
+            navigate(path);
+        } else {
+            Swal.fire({
+                title: 'Please Login',
+                text: 'You need to login to access this feature.',
+                icon: 'warning',
+                confirmButtonText: 'Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login');
+                }
+            });
+        }
+    }
+
     return (
         <div className='container mx-auto px-4 sm:px-8 md:px-12 lg:px-24 pt-24 '>
             <div className='flex flex-wrap justify-between items-center'>
@@ -42,7 +65,7 @@ const PopularProducts = () => {
             </div>
 
             <div className='flex justify-center'>
-                <Link to="/shop">
+                <Link onClick={(e) => handleProtectedClick(e, '/shop')} to="/shop">
                     <div className='flex cursor-pointer justify-center items-center bgp  py-4 px-8 rounded-md w-full sm:w-auto text-white font-semibold gap-3 '>
                         <p>View All Products</p>
                         <TbCategory />

@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import cover from "../../../assets/image/execulisive colloction.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../../Context/AuthProvider";
+import Swal from "sweetalert2";
+
 const LatestExclusive = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleProtectedClick = (e, path) => {
+    e.preventDefault();
+    if (user) {
+      navigate(path);
+    } else {
+      Swal.fire({
+        title: 'Please Login',
+        text: 'You need to login to access this feature.',
+        icon: 'warning',
+        confirmButtonText: 'Login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+    }
+  }
+
   return (
     <div className="py-24">
       <div
@@ -16,7 +40,7 @@ const LatestExclusive = () => {
             Summer Collection
           </h3>
           <button className="bgp px-5 py-2 rounded-md text-white">
-            <Link to="/shop">
+            <Link onClick={(e) => handleProtectedClick(e, '/shop')} to="/shop">
               <button>Shop Now</button>
             </Link>
           </button>

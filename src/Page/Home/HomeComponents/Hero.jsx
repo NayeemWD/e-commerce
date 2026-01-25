@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import bg from "../../../assets/image/HERO-COVER3.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../../Context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Hero = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleProtectedClick = (e, path) => {
+    e.preventDefault();
+    if (user) {
+      navigate(path);
+    } else {
+      Swal.fire({
+        title: 'Please Login',
+        text: 'You need to login to access this feature.',
+        icon: 'warning',
+        confirmButtonText: 'Login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+    }
+  }
+
   return (
     <div>
       {/* <div
@@ -47,7 +70,7 @@ const Hero = () => {
             <br /> Man & Woman
           </h1>
 
-          <Link to="/shop">
+          <Link onClick={(e) => handleProtectedClick(e, '/shop')} to="/shop">
             <button className="btn bgp hover:scale-110 transition-transform duration-500 text-gray-100">
               Shop Now
             </button>

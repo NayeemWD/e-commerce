@@ -6,10 +6,13 @@ import { useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router";
 import { useContext, useState } from "react";
 import { FilterContext } from "../../../Context/FilterContext";
+import { AuthContext } from "../../../Context/AuthProvider";
+import Swal from "sweetalert2";
 
 const MinHeader = () => {
   const cart = useSelector((state) => state.cart.cart);
   const { setCategoryId, setSearchQuery } = useContext(FilterContext);
+  const { user, logOut } = useContext(AuthContext);
   const [term, setTerm] = useState("");
   const navigate = useNavigate();
 
@@ -28,11 +31,25 @@ const MinHeader = () => {
     setTimeout(() => setLoading(false), 800);
   };
 
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Logged out successfully',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
+        navigate('/');
+      })
+      .catch(error => console.error(error))
+  }
+
   return (
     <div>
       <div className="flex flex-wrap items-center py-2 justify-between container  mx-auto px-4 sm:px-8 md:px-12 lg:px-24">
         <NavLink className={({ isActive }) => (isActive ? `cp` : ``)} to="/">
-          <img className="w-16 md:w-24" src={logo} alt="" />
+          <img className="w-16 md:w-24 md:cursor-pointer" src={logo} alt="" />
         </NavLink>
 
         <div className="lg:w-md md:w-auto order-3 md:order-2 mt-4 md:mt-0">
@@ -113,33 +130,57 @@ const MinHeader = () => {
 
         <div className="flex gap-5 order-2 md:order-3">
           <div className="flex items-center gap-1">
-            <CiUser className="text-3xl" />
-            <div className="hidden md:block">
-              {/* <p className="ct text-xs">Account</p> */}
-              <div className=" gap-2">
-                <Link to="/login" className="ts">
-                  LOGIN
-                  <span> /</span> <br />
-                  {/* <p className="ts">/</p> */}
-                </Link>
-                <Link to="/register" className="ts">
-                  REGISTER
-                </Link>
+            {
+              user ? <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="User"
+                      src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow z-10 text-black">
+                  <li>
+                    <a className="justify-between">
+                      {user.displayName || 'User'}
+                    </a>
+                  </li>
+                  <li><a>{user.email}</a></li>
+                  <li><a onClick={handleLogOut}>Logout</a></li>
+                </ul>
+              </div> : <div className="flex items-center gap-1">
+                <CiUser className="text-3xl" />
+                <div className="hidden md:block">
+                  <div className="flex items-center gap-2">
+                    <Link to="/login" className="ts px-3 py-1 rounded-md border border-transparent hover:bg-gray-100 hover:border-gray-300 hover:shadow-md transition-all duration-300">
+                      LOGIN
+                    </Link>
+                    <span>|</span>
+                    <Link to="/register" className="ts px-3 py-1 rounded-md border border-transparent hover:bg-gray-100 hover:border-gray-300 hover:shadow-md transition-all duration-300">
+                      REGISTER
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </div>
+            }
           </div>
-          <Link to="/cart" className="flex items-center gap-1 relative">
-            <CiShoppingCart className="text-3xl" />
-            {cart.length > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {cart.length}
-              </span>
-            )}
-            <div className="hidden md:block">
-              {/* <p className="ct text-xs">Add TO</p> */}
-              <p className="ts">Cart</p>
-            </div>
-          </Link>
+          {/* Cart Icon - Visible only if user is logged in */}
+          {user && (
+            <Link to="/cart" className="flex items-center gap-1 relative">
+              <CiShoppingCart className="text-3xl" />
+              {cart.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {cart.length}
+                </span>
+              )}
+              <div className="hidden md:block">
+                {/* <p className="ct text-xs">Add TO</p> */}
+                <p className="ts">Cart</p>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </div>

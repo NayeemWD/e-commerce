@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BiCategory } from "react-icons/bi";
 import { LuShoppingCart } from "react-icons/lu";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { HiMenu, HiX } from "react-icons/hi";
+import { AuthContext } from "../../../Context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     <div className="border-y py-2 border-gray-200">

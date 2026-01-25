@@ -2,17 +2,36 @@ import React from "react";
 import { FaStar, FaRegHeart, FaShoppingCart, FaEye } from "react-icons/fa";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
-import { Link } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions.jsx";
 import { useToast } from "./ToastContext";
+import { AuthContext } from "../../Context/AuthProvider";
+import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const { showToast } = useToast();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAddToCart = (product) => {
+    if (!user) {
+      Swal.fire({
+        title: 'Please Login',
+        text: 'You need to login to add items to the cart.',
+        icon: 'warning',
+        confirmButtonText: 'Login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+      return;
+    }
+
     const exists = cart.find((i) => i.id === product.id);
     if (exists) {
       showToast({
